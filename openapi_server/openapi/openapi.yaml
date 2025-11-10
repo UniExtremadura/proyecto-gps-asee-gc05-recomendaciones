@@ -1,0 +1,326 @@
+openapi: 3.0.4
+info:
+  description: Registro de reproducciones y likes y generación de recomendaciones
+    y listados personalizados.
+  title: Microservicio Recomendaciones
+  version: 1.0.0
+servers:
+- url: /
+tags:
+- description: Recomendaciones personalizadas y métricas de reproducciones y likes.
+  name: recommendations
+paths:
+  /metrics/artists/{idArtist}/plays:
+    get:
+      description: Devuelve las reproducciones asociadas a un artista.
+      operationId: get_artist_plays
+      parameters:
+      - explode: false
+        in: path
+        name: idArtist
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/play"
+                type: array
+          description: OK
+        "404":
+          description: Not Found
+      summary: Obtener reproducciones por artista
+      tags:
+      - recommendations
+      x-openapi-router-controller: openapi_server.controllers.recommendations_controller
+  /metrics/tracks/{idTrack}/likes:
+    get:
+      description: Devuelve los likes de una canción.
+      operationId: get_track_likes
+      parameters:
+      - explode: false
+        in: path
+        name: idTrack
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/like"
+                type: array
+          description: OK
+        "404":
+          description: Not Found
+      summary: Obtener likes por canción
+      tags:
+      - recommendations
+      x-openapi-router-controller: openapi_server.controllers.recommendations_controller
+  /metrics/tracks/{idTrack}/plays:
+    get:
+      description: Devuelve las reproducciones de una canción.
+      operationId: get_track_plays
+      parameters:
+      - explode: false
+        in: path
+        name: idTrack
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/play"
+                type: array
+          description: OK
+        "404":
+          description: Not Found
+      summary: Obtener reproducciones por canción
+      tags:
+      - recommendations
+      x-openapi-router-controller: openapi_server.controllers.recommendations_controller
+  /metrics/users/{idUser}/likes:
+    get:
+      description: Devuelve los likes del usuario.
+      operationId: get_user_likes
+      parameters:
+      - explode: false
+        in: path
+        name: idUser
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/like"
+                type: array
+          description: OK
+        "404":
+          description: Not Found
+      summary: Obtener likes de usuario
+      tags:
+      - recommendations
+      x-openapi-router-controller: openapi_server.controllers.recommendations_controller
+  /metrics/users/{idUser}/plays:
+    get:
+      description: Devuelve las reproducciones del usuario.
+      operationId: get_user_plays
+      parameters:
+      - explode: false
+        in: path
+        name: idUser
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/play"
+                type: array
+          description: OK
+        "404":
+          description: Not Found
+      summary: Obtener reproducciones de usuario
+      tags:
+      - recommendations
+      x-openapi-router-controller: openapi_server.controllers.recommendations_controller
+  /recommendations/artists/{idArtist}/top-tracks:
+    get:
+      description: Devuelve las canciones más escuchadas de un artista.
+      operationId: get_artist_top_tracks
+      parameters:
+      - explode: false
+        in: path
+        name: idArtist
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/track"
+                type: array
+          description: OK
+        "404":
+          description: Not Found
+      summary: Canciones más escuchadas por artista
+      tags:
+      - recommendations
+      x-openapi-router-controller: openapi_server.controllers.recommendations_controller
+  /recommendations/tracks/top:
+    get:
+      description: Devuelve el listado de canciones más escuchadas.
+      operationId: get_top_tracks
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/track"
+                type: array
+          description: OK
+      summary: Canciones más escuchadas
+      tags:
+      - recommendations
+      x-openapi-router-controller: openapi_server.controllers.recommendations_controller
+  /recommendations/users/{idUser}/recommended-tracks:
+    get:
+      description: "Devuelve canciones recomendadas para el usuario filtradas por\
+        \ like, género o suscripción."
+      operationId: get_recommended_tracks
+      parameters:
+      - explode: false
+        in: path
+        name: idUser
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          enum:
+          - like
+          - genre
+          - subscription
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/track"
+                type: array
+          description: OK
+        "404":
+          description: Not Found
+      summary: Consultar canciones recomendadas
+      tags:
+      - recommendations
+      x-openapi-router-controller: openapi_server.controllers.recommendations_controller
+components:
+  schemas:
+    play:
+      example:
+        user_id: usr_001
+        track_id: trk_301
+        id: play_001
+        timestamp: 2025-10-16T20:15:00Z
+      properties:
+        id:
+          example: play_001
+          title: id
+          type: string
+        user_id:
+          example: usr_001
+          title: user_id
+          type: string
+        track_id:
+          example: trk_301
+          title: track_id
+          type: string
+        timestamp:
+          example: 2025-10-16T20:15:00Z
+          title: timestamp
+          type: string
+      title: play
+      type: object
+    like:
+      example:
+        user_id: usr_001
+        track_id: trk_301
+        id: like_555
+        timestamp: 2025-10-16T20:20:00Z
+      properties:
+        id:
+          example: like_555
+          title: id
+          type: string
+        user_id:
+          example: usr_001
+          title: user_id
+          type: string
+        track_id:
+          example: trk_301
+          title: track_id
+          type: string
+        timestamp:
+          example: 2025-10-16T20:20:00Z
+          title: timestamp
+          type: string
+      title: like
+      type: object
+    track:
+      example:
+        duration: 03:45
+        file_url: https://cdn.musica.com/tracks/de-acero.mp3
+        album_id: alb_101
+        id: trk_301
+        title: De acero
+        published_at: 2025-10-16T20:00:00Z
+      properties:
+        id:
+          example: trk_301
+          title: id
+          type: string
+        album_id:
+          example: alb_101
+          title: album_id
+          type: string
+        title:
+          example: De acero
+          title: title
+          type: string
+        duration:
+          example: 03:45
+          title: duration
+          type: string
+        file_url:
+          example: https://cdn.musica.com/tracks/de-acero.mp3
+          title: file_url
+          type: string
+        published_at:
+          example: 2025-10-16T20:00:00Z
+          title: published_at
+          type: string
+      title: track
+      type: object
+    recommendation:
+      properties:
+        user_id:
+          example: usr_001
+          type: string
+        track_id:
+          example: trk_301
+          type: string
+      type: object
