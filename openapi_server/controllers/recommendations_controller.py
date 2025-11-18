@@ -43,23 +43,46 @@ def add_play(body):
         
     return "Play registered successfully", 201
 
+def add_play(body):  
+    """Registrar una reproducción"""
+    if connexion.request.is_json:
+        # El body ya es el diccionario Python que contiene los datos del Play
+        play_obj = body 
+        
+        # ----------------------------------------------------------------------
+        # TODO: CÓDIGO PARA MONGODB (FUTURO)
+        # Aquí es donde, en el futuro, harías:
+        # db.plays.insert_one(play_obj)
+        # ----------------------------------------------------------------------
+        
+        # FUNCIONALIDAD ACTUAL (MEMORIA):
+        _PLAYS_DB.append(play_obj)
+        
+        # Corrección: Acceder con corchetes ['user_id']
+        print(f"--> [RECIBIDO] Play registrada en Python: User {play_obj['user_id']}")
 
-def add_like(body):  
+    return "Play registered successfully", 201
+
+def add_like(body): 
     """Registrar un like"""
+    # Importamos connexion aquí si no está al inicio
+    import connexion 
+    
     if connexion.request.is_json:
         like_obj = body
         
         # ----------------------------------------------------------------------
         # TODO: CÓDIGO PARA MONGODB (FUTURO)
-        # db.likes.insert_one(like_obj.to_dict())
+        # db.likes.insert_one(like_obj)
         # ----------------------------------------------------------------------
         
         # FUNCIONALIDAD ACTUAL (MEMORIA):
         _LIKES_DB.append(like_obj)
-        print(f"--> Like registrado: User {like_obj.user_id}")
+        
+        # IMPORTANTE: Usamos corchetes para acceder a los datos
+        print(f"--> [RECIBIDO] Like registrado en Python: User {like_obj['user_id']}")
 
     return "Like registered successfully", 201
-
 
 def get_user_plays(id_user): 
     """Obtener reproducciones de usuario"""

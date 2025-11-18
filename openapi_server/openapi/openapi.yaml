@@ -10,6 +10,44 @@ tags:
 - description: Recomendaciones personalizadas y métricas de reproducciones y likes.
   name: recommendations
 paths:
+  /metrics/likes:
+    post:
+      description: Registra un nuevo like de una canción por parte de un usuario.
+      operationId: add_like # <--- Esta será la función en tu controlador Python
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/like'
+        required: true
+      responses:
+        "201":
+          description: Like registrado correctamente
+        "400":
+          description: Bad Request (Datos inválidos)
+      summary: Registrar like
+      tags:
+      - recommendations
+      x-openapi-router-controller: openapi_server.controllers.recommendations_controller
+  /metrics/plays:
+    post:
+      description: Registra una nueva reproducción de una canción por parte de un usuario.
+      operationId: add_play  # <--- Debe coincidir con el nombre de la función en tu controlador Python
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/play'
+        required: true
+      responses:
+        "201":
+          description: Play registrada correctamente
+        "400":
+          description: Bad Request (Datos inválidos)
+      summary: Registrar reproducción
+      tags:
+      - recommendations
+      x-openapi-router-controller: openapi_server.controllers.recommendations_controller   
   /metrics/artists/{idArtist}/plays:
     get:
       description: Devuelve las reproducciones asociadas a un artista.
