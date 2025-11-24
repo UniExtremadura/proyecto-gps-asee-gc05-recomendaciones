@@ -14,22 +14,22 @@ class Play(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: int=None, user_id: str=None, track_id: str=None, timestamp: str=None):  # noqa: E501
+    def __init__(self, id: str=None, user_id: str=None, track_id: str=None, timestamp: str=None):  # noqa: E501
         """Play - a model defined in OpenAPI
 
         :param id: The id of this Play.  # noqa: E501
         :type id: int
         :param user_id: The user_id of this Play.  # noqa: E501
-        :type user_id: str
+        :type user_id: int
         :param track_id: The track_id of this Play.  # noqa: E501
-        :type track_id: str
+        :type track_id: int
         :param timestamp: The timestamp of this Play.  # noqa: E501
         :type timestamp: str
         """
         self.openapi_types = {
-            'id': int,
-            'user_id': str,    # <--- str
-            'track_id': str,   # <--- str
+            'id': str,        # <--- CAMBIO: int
+            'user_id': str,   # <--- CAMBIO: int
+            'track_id': str,  # <--- CAMBIO: int
             'timestamp': str
         }
 
@@ -57,8 +57,10 @@ class Play(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def id(self) -> int:
+    def id(self) -> str:
         """Gets the id of this Play.
+
+
         :return: The id of this Play.
         :rtype: int
         """
@@ -67,46 +69,61 @@ class Play(Model):
     @id.setter
     def id(self, id: int):
         """Sets the id of this Play.
+
+
         :param id: The id of this Play.
         :type id: int
         """
+
         self._id = id
 
     @property
     def user_id(self) -> str:
         """Gets the user_id of this Play.
+
+
         :return: The user_id of this Play.
-        :rtype: str
+        :rtype: int
         """
         return self._user_id
 
     @user_id.setter
     def user_id(self, user_id: str):
         """Sets the user_id of this Play.
+
+
         :param user_id: The user_id of this Play.
-        :type user_id: str
+        :type user_id: int
         """
+
         self._user_id = user_id
 
     @property
     def track_id(self) -> str:
         """Gets the track_id of this Play.
+
+
         :return: The track_id of this Play.
-        :rtype: str
+        :rtype: int
         """
         return self._track_id
 
     @track_id.setter
     def track_id(self, track_id: str):
         """Sets the track_id of this Play.
+
+
         :param track_id: The track_id of this Play.
-        :type track_id: str
+        :type track_id: int
         """
+
         self._track_id = track_id
 
     @property
     def timestamp(self) -> str:
         """Gets the timestamp of this Play.
+
+
         :return: The timestamp of this Play.
         :rtype: str
         """
@@ -115,7 +132,10 @@ class Play(Model):
     @timestamp.setter
     def timestamp(self, timestamp: str):
         """Sets the timestamp of this Play.
+
+
         :param timestamp: The timestamp of this Play.
         :type timestamp: str
         """
+
         self._timestamp = timestamp

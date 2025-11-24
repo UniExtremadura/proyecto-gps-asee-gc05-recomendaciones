@@ -1,8 +1,8 @@
 # coding: utf-8
 
-from datetime import date, datetime  # noqa: F401
+from datetime import date, datetime
 
-from typing import List, Dict  # noqa: F401
+from typing import List, Dict, Type
 
 from openapi_server.models.base_model import Model
 from openapi_server import util
@@ -14,25 +14,25 @@ class Track(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: str=None, album_id: str=None, title: str=None, duration: str=None, file_url: str=None, published_at: str=None):  # noqa: E501
+    def __init__(self, id: str=None, album_id: str=None, title: str=None, duration: str=None, file_url: str=None, published_at: str=None):
         """Track - a model defined in OpenAPI
 
-        :param id: The id of this Track.  # noqa: E501
-        :type id: str
-        :param album_id: The album_id of this Track.  # noqa: E501
-        :type album_id: str
-        :param title: The title of this Track.  # noqa: E501
+        :param id: The id of this Track.
+        :type id: int
+        :param album_id: The album_id of this Track.
+        :type album_id: int
+        :param title: The title of this Track.
         :type title: str
-        :param duration: The duration of this Track.  # noqa: E501
+        :param duration: The duration of this Track.
         :type duration: str
-        :param file_url: The file_url of this Track.  # noqa: E501
+        :param file_url: The file_url of this Track.
         :type file_url: str
-        :param published_at: The published_at of this Track.  # noqa: E501
+        :param published_at: The published_at of this Track.
         :type published_at: str
         """
         self.openapi_types = {
-            'id': str,          # <--- Confirmado: str
-            'album_id': str,    # <--- Confirmado: str
+            'id': str,       # <--- CAMBIO IMPORTANTE: Ahora es int
+            'album_id': str, # <--- CAMBIO IMPORTANTE: Ahora es int
             'title': str,
             'duration': str,
             'file_url': str,
@@ -60,8 +60,7 @@ class Track(Model):
         """Returns the dict as a model
 
         :param dikt: A dict.
-        :type: dict
-        :return: The track of this Track.  # noqa: E501
+        :return: The track of this Track.
         :rtype: Track
         """
         return util.deserialize_model(dikt, cls)
@@ -69,38 +68,43 @@ class Track(Model):
     @property
     def id(self) -> str:
         """Gets the id of this Track.
+
         :return: The id of this Track.
-        :rtype: str
+        :rtype: int
         """
         return self._id
 
     @id.setter
     def id(self, id: str):
         """Sets the id of this Track.
+
         :param id: The id of this Track.
-        :type id: str
+        :type id: int
         """
         self._id = id
 
     @property
     def album_id(self) -> str:
         """Gets the album_id of this Track.
+
         :return: The album_id of this Track.
-        :rtype: str
+        :rtype: int
         """
         return self._album_id
 
     @album_id.setter
     def album_id(self, album_id: str):
         """Sets the album_id of this Track.
+
         :param album_id: The album_id of this Track.
-        :type album_id: str
+        :type album_id: int
         """
         self._album_id = album_id
 
     @property
     def title(self) -> str:
         """Gets the title of this Track.
+
         :return: The title of this Track.
         :rtype: str
         """
@@ -109,6 +113,7 @@ class Track(Model):
     @title.setter
     def title(self, title: str):
         """Sets the title of this Track.
+
         :param title: The title of this Track.
         :type title: str
         """
@@ -117,6 +122,7 @@ class Track(Model):
     @property
     def duration(self) -> str:
         """Gets the duration of this Track.
+
         :return: The duration of this Track.
         :rtype: str
         """
@@ -125,6 +131,7 @@ class Track(Model):
     @duration.setter
     def duration(self, duration: str):
         """Sets the duration of this Track.
+
         :param duration: The duration of this Track.
         :type duration: str
         """
@@ -133,6 +140,7 @@ class Track(Model):
     @property
     def file_url(self) -> str:
         """Gets the file_url of this Track.
+
         :return: The file_url of this Track.
         :rtype: str
         """
@@ -141,6 +149,7 @@ class Track(Model):
     @file_url.setter
     def file_url(self, file_url: str):
         """Sets the file_url of this Track.
+
         :param file_url: The file_url of this Track.
         :type file_url: str
         """
@@ -149,6 +158,7 @@ class Track(Model):
     @property
     def published_at(self) -> str:
         """Gets the published_at of this Track.
+
         :return: The published_at of this Track.
         :rtype: str
         """
@@ -157,6 +167,7 @@ class Track(Model):
     @published_at.setter
     def published_at(self, published_at: str):
         """Sets the published_at of this Track.
+
         :param published_at: The published_at of this Track.
         :type published_at: str
         """
