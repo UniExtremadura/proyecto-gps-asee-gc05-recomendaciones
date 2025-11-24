@@ -14,7 +14,7 @@ class Track(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: str=None, album_id: str=None, title: str=None, duration: str=None, file_url: str=None, published_at: str=None):
+    def __init__(self, id: int=None, album_id: int=None, title: str=None, duration: str=None, file_url: str=None, published_at: str=None):
         """Track - a model defined in OpenAPI
 
         :param id: The id of this Track.
@@ -31,8 +31,8 @@ class Track(Model):
         :type published_at: str
         """
         self.openapi_types = {
-            'id': str,       # <--- CAMBIO IMPORTANTE: Ahora es int
-            'album_id': str, # <--- CAMBIO IMPORTANTE: Ahora es int
+            'id': int,       # <--- CAMBIO IMPORTANTE: Ahora es int
+            'album_id': int, # <--- CAMBIO IMPORTANTE: Ahora es int
             'title': str,
             'duration': str,
             'file_url': str,
@@ -66,7 +66,7 @@ class Track(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def id(self) -> str:
+    def id(self) -> int:
         """Gets the id of this Track.
 
         :return: The id of this Track.
@@ -75,7 +75,7 @@ class Track(Model):
         return self._id
 
     @id.setter
-    def id(self, id: str):
+    def id(self, id: int):
         """Sets the id of this Track.
 
         :param id: The id of this Track.
@@ -84,7 +84,7 @@ class Track(Model):
         self._id = id
 
     @property
-    def album_id(self) -> str:
+    def album_id(self) -> int:
         """Gets the album_id of this Track.
 
         :return: The album_id of this Track.
@@ -93,7 +93,7 @@ class Track(Model):
         return self._album_id
 
     @album_id.setter
-    def album_id(self, album_id: str):
+    def album_id(self, album_id: int):
         """Sets the album_id of this Track.
 
         :param album_id: The album_id of this Track.
