@@ -14,22 +14,22 @@ class Like(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: str=None, user_id: str=None, track_id: str=None, timestamp: str=None):  # noqa: E501
+    def __init__(self, id: int=None, user_id: str=None, track_id: str=None, timestamp: str=None):  # noqa: E501
         """Like - a model defined in OpenAPI
 
         :param id: The id of this Like.  # noqa: E501
         :type id: int
         :param user_id: The user_id of this Like.  # noqa: E501
-        :type user_id: int
+        :type user_id: str
         :param track_id: The track_id of this Like.  # noqa: E501
-        :type track_id: int
+        :type track_id: str
         :param timestamp: The timestamp of this Like.  # noqa: E501
         :type timestamp: str
         """
         self.openapi_types = {
-            'id': str,        # <--- CAMBIO: int
-            'user_id': str,   # <--- CAMBIO: int
-            'track_id': str,  # <--- CAMBIO: int
+            'id': int,
+            'user_id': str,    # <--- CORREGIDO: str
+            'track_id': str,   # <--- CORREGIDO: str
             'timestamp': str
         }
 
@@ -59,8 +59,6 @@ class Like(Model):
     @property
     def id(self) -> int:
         """Gets the id of this Like.
-
-
         :return: The id of this Like.
         :rtype: int
         """
@@ -69,61 +67,46 @@ class Like(Model):
     @id.setter
     def id(self, id: int):
         """Sets the id of this Like.
-
-
         :param id: The id of this Like.
         :type id: int
         """
-
         self._id = id
 
     @property
     def user_id(self) -> str:
         """Gets the user_id of this Like.
-
-
         :return: The user_id of this Like.
-        :rtype: int
+        :rtype: str
         """
         return self._user_id
 
     @user_id.setter
     def user_id(self, user_id: str):
         """Sets the user_id of this Like.
-
-
         :param user_id: The user_id of this Like.
-        :type user_id: int
+        :type user_id: str
         """
-
         self._user_id = user_id
 
     @property
     def track_id(self) -> str:
         """Gets the track_id of this Like.
-
-
         :return: The track_id of this Like.
-        :rtype: int
+        :rtype: str
         """
         return self._track_id
 
     @track_id.setter
     def track_id(self, track_id: str):
         """Sets the track_id of this Like.
-
-
         :param track_id: The track_id of this Like.
-        :type track_id: int
+        :type track_id: str
         """
-
         self._track_id = track_id
 
     @property
     def timestamp(self) -> str:
         """Gets the timestamp of this Like.
-
-
         :return: The timestamp of this Like.
         :rtype: str
         """
@@ -132,10 +115,7 @@ class Like(Model):
     @timestamp.setter
     def timestamp(self, timestamp: str):
         """Sets the timestamp of this Like.
-
-
         :param timestamp: The timestamp of this Like.
         :type timestamp: str
         """
-
         self._timestamp = timestamp
