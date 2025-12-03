@@ -427,3 +427,5 @@ def get_artist_top_tracks(id_artist):
             original_track['score'] = item['plays']  # El frontend espera 'score' o 'plays'
             result.append(original_track)
     return result, 200
+
+## git commit -m "GC05-97 Configurar MongoDB"
